@@ -3,21 +3,15 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "src/Contract.sol";
-
-contract TestContract is Test {
-    Contract c;
-
+contract TestExploit is Test {
+    
     function setUp() public {
-        c = new Contract();
+        vm.chainId(1);
+        vm.createSelectFork("https://eth.llamarpc.com");     
     }
 
-    function testBar() public {
-        assertEq(uint256(1), uint256(1), "ok");
+    function test_Exploit() public {
+        
     }
 
-    function testFoo(uint256 x) public {
-        vm.assume(x < type(uint128).max);
-        assertEq(x + x, x * 2);
-    }
 }
